@@ -1,0 +1,51 @@
+3 blocks of oop
+class
+attibutes 
+
+1st one class 
+before the class public need illa 
+
+scanner = class 
+java.util = pakage 
+
+new instance = new 
+some constactors
+
+for 2nd set panuvam (idea)
+rec.setLength(6);
+
+
+
+
+void = dont return anything
+global variable - with in a class
+if we use same variable name , 
+when we write a methon 
+method1(parameter)
+
+setLenghth(argument);
+Sout(rec.getPeriimeter());
+
+Q5 
+methods :performOperation
+
+charAt from string class - string is a class 
+static -
+public staic double performOperatoion (chr doub doub){
+
+in 
+default:
+Sout(invalid operation )
+
+double result = performOperation(operation,num1,num3); - efficient taam 
+
+
+main method irukura class thaan file name
+instance create panninaa athu constructor ra call pannum 
+
+
+library.addBook(book); 
+instance create panrathuku pathila ipdi pannalaam 
+
+
+
