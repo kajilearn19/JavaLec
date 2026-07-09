@@ -1,0 +1,115 @@
+public class ArrayADT {
+    private int[] array;
+    private int size;
+
+    public ArrayADT(int capacity) {
+        array = new int[capacity];
+        size = 0;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public boolean isFull() {
+        return size == array.length;
+    }
+
+    public void insert(int index, int value) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Index is out of range");
+        } else if (isFull()) {
+            System.out.println("Array is full");
+        } else {
+            for (int i = size - 1; i >= index; i--) {
+                array[i + 1] = array[i];
+            }
+            array[index] = value;
+            size++;
+        }
+    }
+
+    // Iterative search
+    public int search(int k) {
+        for (int i = 0; i < size; i++) {
+            if (array[i] == k) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    // Public wrapper for recursive search
+    public int searchRecursive(int k) {
+        return searchRecursiveHelper(k, 0);
+    }
+
+    // Private helper
+    private int searchRecursiveHelper(int k, int i) {
+        if (i >= size) {
+            return -1; // base case: not found
+        }
+        if (array[i] == k) {
+            return i;
+        }
+        return searchRecursiveHelper(k, i + 1);
+    }
+
+    public void deletion(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index is out of range");
+        } else if (isEmpty()) {
+            System.out.println("Array is empty");
+        } else {
+            for (int i = index; i < size - 1; i++) {
+                array[i] = array[i + 1];
+            }
+            array[size - 1] = 0;
+            size--;
+        }
+    }
+
+    public void traverse() {
+        for (int i = 0; i < size; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public int get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index is out of range");
+        }
+        return array[index];
+    }
+
+    public void set(int index, int value) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index is out of range");
+        }
+        array[index] = value;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public static void main(String[] args) {
+        ArrayADT arr = new ArrayADT(5);
+
+        arr.insert(0, 8);
+        arr.insert(1, 3);
+        arr.insert(2, 4);
+        arr.insert(3, 7);
+        arr.insert(4, 8);
+
+        arr.traverse();
+
+        System.out.println("Search 7 (iterative): " + arr.search(7));
+		
+
+        arr.deletion(2);
+        arr.traverse();
+    }
+}
+
