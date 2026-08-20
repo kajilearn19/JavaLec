@@ -1,0 +1,89 @@
+//front null naa rear rayum nulla aakanum - important point daa 
+
+class Node{
+	String data;
+	Node next;
+	
+	public Node(String data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+class StackADT{
+	Node front = null;
+	Node rear = null;
+	
+	public StackADT() {
+        this.front = null;
+    }
+
+    public boolean isEmpty() {
+        return front == null;
+    }
+	
+	public void enqueue(String data){
+		Node newNode = new Node(data);
+		if (isEmpty()){
+			front=newNode;
+			rear=newNode;
+		}
+		else {
+			rear.next=newNode;
+			rear=newNode;
+		}
+	}
+	public String dequeue(){
+		if (isEmpty()){
+			System.out.println("Stack is empty");
+		}
+		else {
+			front = front.next;
+			if(front==null){
+				rear=null;
+			}
+		}
+		return front.data;
+	}
+	
+	
+	public String peek(){
+		if (isEmpty()){
+			System.out.println("Stack is empty");
+			return null;
+		}
+		else {
+			return front.data;
+		}
+	}
+	
+	public void display() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty");
+        } else {
+            Node current = front;
+            while (current != null) {
+                System.out.print(current.data + " ");
+                current = current.next;
+            }
+            System.out.println();
+        }
+    }
+	
+}
+
+	
+	
+
+public class QueueSLLADT{
+	public static void main(String args[]){
+		StackADT stack = new StackADT();
+		stack.enqueue("aa");
+		stack.enqueue("bb");
+		stack.display();
+		System.out.println(stack.peek());
+		System.out.println(stack.dequeue());
+		stack.display();
+		
+	}
+}
