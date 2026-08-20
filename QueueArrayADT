@@ -1,0 +1,198 @@
+/*
+class QueueADT {
+    String [] array;
+    int max_size;
+	int front;
+	int rear;
+    
+    public QueueADT(int max_size) {
+        this.max_size=max_size;
+		array = new String [max_size];
+		front=0;
+		rear=-1;
+    }
+    
+	public boolean isEmpty() {
+        return rear == -1;
+		
+    }
+    
+    public boolean isFull() {
+        return rear == max_size-1;
+    }
+	
+	public void enqueue(String data){
+		if (isFull()){
+			System.out.println("Stack is full. Cannot Enqueue "+data);
+		}
+		else {
+			array[++rear]=data;
+		}
+	}
+	
+	public String  dequeueA(){
+		if (isEmpty()){
+			System.out.println("Stack is empty. cannot dequeue ");
+			return null;
+		}
+		else {
+			String data = array[front];
+			front++;
+			if (front>rear){
+				front=0;
+				rear=-1;
+			}
+			return data;
+		}
+	}
+	public String dequeueB(){
+		if (isEmpty()) {
+            System.out.println("Stack is empty.");
+        }
+		else {
+		String data = array[front];
+		for (int i=0;i<rear; i++){
+			array[i]=array[i+1];
+		}
+		array[rear--]="";
+		return data;
+		}
+	}
+	public void display() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty.");
+        } else {
+            System.out.print("Elements: ");
+            for (int i = front; i <= rear; i++) {
+                System.out.print(array[i]+" ");
+            }
+            System.out.println();
+        }
+    }
+	public String peek(){
+		//
+	}
+}	
+public class QueueArrayADT{
+	public static void main (String args[]){
+		QueueADT stack = new QueueADT(5);
+		stack.display();
+		System.out.println(stack.isEmpty());
+		System.out.println(stack.isFull());
+		stack.enqueue("1st");
+		//stack.enqueue("");
+		stack.enqueue("2nd");
+		stack.enqueue("3rd");
+		stack.display();
+		stack.dequeueA();
+		stack.dequeueA();
+		stack.display();
+		stack.enqueue("");
+		stack.enqueue("4th");
+		stack.enqueue("5th");
+		stack.dequeueB();
+		stack.display();
+		
+	}
+}
+
+---------------------------------------------------
+Ithu copilot da code
+-----------------------------------------------------
+*/
+class QueueADT {
+    String[] array;
+    int max_size;
+    int front;
+    int rear;
+
+    public QueueADT(int max_size) {
+        this.max_size = max_size;
+        array = new String[max_size];
+        front = 0;
+        rear = -1;
+    }
+
+    public boolean isEmpty() {
+        return rear == -1;
+    }
+
+    public boolean isFull() {
+        return rear == max_size - 1;
+    }
+
+    public void enqueue(String data) {
+        if (isFull()) {
+            System.out.println("Queue is full. Cannot enqueue " + data);
+        } else {
+            array[++rear] = data;
+        }
+    }
+
+    // Method A: pointer-based dequeue
+    public String dequeueA() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty. Cannot dequeue.");
+            return null;
+        } else {
+            String data = array[front];
+            front++;
+            if (front > rear) { // reset when queue becomes empty
+                front = 0;
+                rear = -1;
+            }
+            return data;
+        }
+    }
+
+    // Method B: shift-based dequeue
+    public String dequeueB() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty. Cannot dequeue.");
+            return null;
+        }
+        String data = array[front];
+        for (int i = 0; i < rear; i++) {
+            array[i] = array[i + 1];
+        }
+        rear--;
+        return data;
+    }
+
+    public void display() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty.");
+        } else {
+            System.out.print("Elements: ");
+            for (int i = front; i <= rear; i++) {
+                System.out.print(array[i] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+public class QueueArrayADT {
+    public static void main(String args[]) {
+        QueueADT queue = new QueueADT(5);
+        queue.display();
+        System.out.println(queue.isEmpty()); // true
+        System.out.println(queue.isFull());  // false
+
+        queue.enqueue("1st");
+        queue.enqueue("2nd");
+        queue.enqueue("3rd");
+        queue.display(); // Elements: 1st 2nd 3rd
+
+        queue.dequeueA(); // removes "1st"
+        queue.dequeueA(); // removes "2nd"
+        queue.display();  // Elements: 3rd
+
+        queue.enqueue("4th");
+        queue.enqueue("5th");
+        queue.display(); // Elements: 3rd 4th 5th
+
+        queue.dequeueB(); // removes "3rd"
+        queue.display();  // Elements: 4th 5th
+    }
+}
