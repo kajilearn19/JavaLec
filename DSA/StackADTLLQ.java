@@ -21,18 +21,46 @@ class StackADT {
 
     public void push(String data) {
         Node newNode = new Node(data);
-        newNode.next = top;
-        top = newNode;
+
+        if (isEmpty()) {
+            top = newNode;
+        } else {
+            newNode.next = top;
+            top = newNode;
+        }
     }
 
     public String pop() {
         if (isEmpty()) {
+            System.out.println("Stack is empty");
             return null;
+        } else {
+            String data = top.data;
+            top = top.next;
+            return data;
         }
+    }
 
-        String data = top.data;
-        top = top.next;
-        return data;
+    public String peek() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty");
+            return null;
+        } else {
+            return top.data;
+        }
+    }
+
+    public void display() {
+        if (isEmpty()) {
+            System.out.println("Stack is empty");
+        } else {
+            Node current = top;
+            while (current != null) {
+                System.out.print(current.data + " ");
+                current = current.next;
+            }
+            System.out.println();
+        }
     }
 }
 
@@ -40,34 +68,25 @@ public class StackADTLLQ {
 
     public static void main(String[] args) {
 
-        String str = "Madam, I'm Adam";
+        String str = "Madam";
+        str = str.toLowerCase();   
         StackADT stack = new StackADT();
 
-        // Push only letters and numbers
+
         for (int i = 0; i < str.length(); i++) {
-
-            char ch = Character.toLowerCase(str.charAt(i));
-
-            if (Character.isLetterOrDigit(ch)) {
-                stack.push(String.valueOf(ch)); // Push as String
-            }
+            stack.push("" + str.charAt(i));
         }
 
         boolean palindrome = true;
 
-        // Compare with popped values
+
         for (int i = 0; i < str.length(); i++) {
 
-            char ch = Character.toLowerCase(str.charAt(i));
+            String ch = "" + str.charAt(i);
 
-            if (Character.isLetterOrDigit(ch)) {
-
-                String popped = stack.pop();
-
-                if (!String.valueOf(ch).equals(popped)) {
-                    palindrome = false;
-                    break;
-                }
+            if (!ch.equals(stack.pop())) {
+                palindrome = false;
+                break;
             }
         }
 
